@@ -8,6 +8,8 @@ namespace ConsoleApp
 {
     class MyIO
     {
+        
+
         public static void Tulis(int kiri, int atas, string teks)
         {
 
