@@ -41,8 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessDB.cs" />
+    <Compile Include="MyIO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiswaSvc.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -6,19 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp
 {
-    class Program
+    class AccessDB
     {
-        static void Main(string[] args)
-        {
-            //buat menu
-
-
-
-
-
-
-            Console.ReadKey();
-        }
-
     }
 }
