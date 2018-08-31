@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Data.OleDb;
+
 namespace ConsoleApp
 {
     class Program
@@ -14,7 +16,7 @@ namespace ConsoleApp
             int pilihan;
             do
             {
-                Console.WriteLine();
+                Console.Clear();
                 Console.WriteLine("WEARNES EDUCATION CENTER MADIUN");
                 Console.WriteLine("Informatika 1 - 2018");
                 Console.WriteLine("--------------------------------");
@@ -34,19 +36,51 @@ namespace ConsoleApp
                     //pengolahan data siswa
                     do
                     {
-                        Console.WriteLine();
-                        Console.WriteLine("Pengolahan Data Siswa");
+                        Console.Clear();
+                        Console.WriteLine(":: Pengolahan Data Siswa");
                         Console.WriteLine("---------------------");
                         Console.WriteLine("1. Tambah Data Siswa ");
                         Console.WriteLine("2. Tampil Data Siswa ");
                         Console.WriteLine("3. Edit Data Siswa ");
                         Console.WriteLine("4. Hapus Data Siswa ");
                         Console.WriteLine("5. Kembali ke Menu Awal");
-                        Console.Write("Masukkan Pilihan Anda [1-5]");
+                        Console.Write("Masukkan Pilihan Anda [1-5] : ");
                         pilihanSiswa = int.Parse(Console.ReadLine());
                         if (pilihanSiswa == 1)
                         {
                             //proses tambah siswa
+
+                            Console.Clear();
+                            Console.WriteLine(">> Input Data Siswa");
+                            Console.Write("NIS      : ");
+                            string nis = Console.ReadLine();
+                            Console.Write("NAMA     : ");
+                            string nama = Console.ReadLine();
+                            Console.Write("KELAS    : ");
+                            string kelas = Console.ReadLine();
+
+                            Console.Write("Simpan Data ? [Y/N] ");
+                            string jawab = Console.ReadLine();
+
+                            if (jawab.ToUpper() == "Y")
+                            {
+                                //simpan ke database
+                                //ciptakan query
+                                string query = "INSERT INTO siswa (nis,nama,kelas) VALUES (@nis,@nama,@kelas)";
+                                //buat koneksi / penghubung
+                                string koneksiString = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb;";
+                                OleDbConnection koneksi = new OleDbConnection(koneksiString);
+                                koneksi.Open();
+                                //buat perintah dan eksesuksi query
+                                OleDbCommand cmd = new OleDbCommand(query, koneksi);
+                                cmd.Parameters.AddWithValue("nis", nis);
+                                cmd.Parameters.AddWithValue("nama", nama);
+                                cmd.Parameters.AddWithValue("kelas", kelas);
+                                cmd.ExecuteNonQuery();
+
+
+                            }
+
                         }
                         else if (pilihanSiswa == 2)
                         {
