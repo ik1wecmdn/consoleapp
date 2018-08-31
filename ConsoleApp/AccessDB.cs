@@ -17,13 +17,23 @@ namespace ConsoleApp
         public AccessDB()
         {
             //constructor
-
+            string koneksiString = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb;";
+            koneksi = new OleDbConnection(koneksiString);
+            koneksi.Open();
         }
 
-        public void Execute(string query, OleDbParameter[] parameters)
+        public void Execute(string query, params OleDbParameter[] parameters)
         {
             //untuk execute command
+            OleDbCommand cmd = new OleDbCommand(query, koneksi);
+            cmd.Parameters.AddRange(parameters);
+            cmd.ExecuteNonQuery();
+        }
 
+        ~AccessDB()
+        {
+            //destructor
+            koneksi.Close();
         }
 
     }

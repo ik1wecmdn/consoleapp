@@ -48,8 +48,8 @@ namespace ConsoleApp
                         pilihanSiswa = int.Parse(Console.ReadLine());
                         if (pilihanSiswa == 1)
                         {
-                            //proses tambah siswa
-
+                            
+                            //proses tambah siswa menggunakan procedural
                             Console.Clear();
                             Console.WriteLine(">> Input Data Siswa");
                             Console.Write("NIS      : ");
@@ -65,6 +65,7 @@ namespace ConsoleApp
                             if (jawab.ToUpper() == "Y")
                             {
                                 //simpan ke database
+                                
                                 //ciptakan query
                                 string query = "INSERT INTO siswa (nis,nama,kelas) VALUES (@nis,@nama,@kelas)";
                                 //buat koneksi / penghubung
@@ -77,9 +78,36 @@ namespace ConsoleApp
                                 cmd.Parameters.AddWithValue("nama", nama);
                                 cmd.Parameters.AddWithValue("kelas", kelas);
                                 cmd.ExecuteNonQuery();
-
-
+                                 
                             }
+                                                        
+
+
+                            //menambah data menggunakan konsep oop (lihat file siswasvc, siswamodel, accessdb
+                            
+                            /*
+                            
+                            SiswaModel data = new SiswaModel();
+                            Console.Clear();
+                            Console.WriteLine(">> Input Data Siswa");
+                            Console.Write("NIS      : ");
+                            data.nis = Console.ReadLine();
+                            Console.Write("NAMA     : ");
+                            data.nama = Console.ReadLine();
+                            Console.Write("KELAS    : ");
+                            data.kelas = Console.ReadLine();
+
+                            Console.Write("Simpan Data ? [Y/N] ");
+                            string jawab = Console.ReadLine();
+
+                            if (jawab.ToUpper() == "Y")
+                            {
+                                //tambah ke database
+                                SiswaSvc siswa = new SiswaSvc();
+                                siswa.Add(data);
+                            }
+                            
+                            */
 
                         }
                         else if (pilihanSiswa == 2)
