@@ -13,9 +13,17 @@ namespace ConsoleApp
     {
         public DataTable GetAll()
         {
-            DataTable result = new DataTable();
+            string query = "SELECT nis,nama,kelas FROM siswa";
+            AccessDB db = new AccessDB();
+            return db.GetData(query);
+        }
 
-            return result;
+        public DataTable GetByName(string nama)
+        {
+            string query = "SELECT nis,nama,kelas FROM siswa WHERE nama LIKE @kriteria";
+            AccessDB db = new AccessDB();
+            return db.GetData(query, 
+                new OleDbParameter("kriteria", "%" + nama + "%"));
         }
 
         public void Add(SiswaModel data)

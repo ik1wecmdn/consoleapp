@@ -9,6 +9,8 @@ namespace ConsoleApp
     class SiswaModel
     {
         private string _nis;
+        private string _nama;
+        private string _kelas;
         public string nis
         {
             get 
@@ -22,13 +24,25 @@ namespace ConsoleApp
         }
         public string nama
         {
-            get;
-            set;
+            get
+            {
+                return _nama;
+            }
+            set
+            {
+                _nama = value;
+            }
         }
         public string kelas
         {
-            get;
-            set;
+            get
+            {
+                return _kelas;
+            }
+            set
+            {
+                _kelas = value;
+            }
         }
     }
 }

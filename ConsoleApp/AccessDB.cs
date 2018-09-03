@@ -22,12 +22,28 @@ namespace ConsoleApp
             koneksi.Open();
         }
 
+        //untuk insert update dan delete
         public void Execute(string query, params OleDbParameter[] parameters)
         {
             //untuk execute command
             OleDbCommand cmd = new OleDbCommand(query, koneksi);
             cmd.Parameters.AddRange(parameters);
             cmd.ExecuteNonQuery();
+        }
+
+        //untuk select
+        public DataTable GetData(string query, params OleDbParameter[] parameters)
+        {
+            DataTable result = new DataTable();
+
+            OleDbCommand cmd = new OleDbCommand(query, koneksi);
+            cmd.Parameters.AddRange(parameters);
+            OleDbDataReader reader = cmd.ExecuteReader();
+
+            //isi result dari reader
+            result.Load(reader);
+
+            return result;
         }
 
         ~AccessDB()

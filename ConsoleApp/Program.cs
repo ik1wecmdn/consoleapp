@@ -120,6 +120,8 @@ namespace ConsoleApp
                             Console.Write("Masukkan Nama Siswa atau kosongi untuk menampilkan semua : ");
                             string cari = Console.ReadLine();
 
+                            //---- Tampil Data Procedural --
+
                             //buat koneksi ke access
                             string koneksiString = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb";
                             OleDbConnection koneksi = new OleDbConnection(koneksiString);
@@ -142,19 +144,34 @@ namespace ConsoleApp
                             //menampung dalam data tabel
                             DataTable dtSiswa = new DataTable();
                             dtSiswa.Load(reader);
+                            
+                            //---- End Tampil Data Procedural --
 
-                            //lakukan perulangan dari baris 0 sampai juml baris
-                            //for (int i = 0; i < dtSiswa.Rows.Count; i++)
-                            //{
-                            //    DataRow row = dtSiswa.Rows[i];
-                            //    Console.WriteLine(" | {0} | {1,-30} | {2,-5} | ",
-                            //        row["nis"], row["nama"], row["kelas"]);
-                            //}
+                            //Contoh penggunaan OOP cek file siswasvc dan accessdb
+                            /*
+                            SiswaSvc siswa = new SiswaSvc();
+                            DataTable dtSiswa;
+                            if (cari == "")
+                                dtSiswa = siswa.GetAll();
+                            else
+                                dtSiswa = siswa.GetByName(cari);
+                            */
+
+                            
+                            // -- menampilkan data 
+                            //    lakukan perulangan dari baris 0 sampai juml baris
+                            // for (int i = 0; i < dtSiswa.Rows.Count; i++)
+                            // {
+                            //     DataRow row = dtSiswa.Rows[i];
+                            //     Console.WriteLine(" | {0} | {1,-30} | {2,-5} | ",
+                            //         row["nis"], row["nama"], row["kelas"]);
+                            // }
                             
                             Console.WriteLine();
 
                             if (dtSiswa.Rows.Count > 0)
                             {
+                                //tampilkan data jika ada data
                                 foreach (DataRow row in dtSiswa.Rows)
                                 {
                                     Console.WriteLine(" | {0} | {1,-30} | {2,-5} | ",
