@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Data;
 using System.Data.OleDb;
 
 namespace ConsoleApp
@@ -38,7 +39,7 @@ namespace ConsoleApp
                     {
                         Console.Clear();
                         Console.WriteLine(":: Pengolahan Data Siswa");
-                        Console.WriteLine("---------------------");
+                        Console.WriteLine("------------------------");
                         Console.WriteLine("1. Tambah Data Siswa ");
                         Console.WriteLine("2. Tampil Data Siswa ");
                         Console.WriteLine("3. Edit Data Siswa ");
@@ -64,8 +65,6 @@ namespace ConsoleApp
 
                             if (jawab.ToUpper() == "Y")
                             {
-                                //simpan ke database
-                                
                                 //ciptakan query
                                 string query = "INSERT INTO siswa (nis,nama,kelas) VALUES (@nis,@nama,@kelas)";
                                 //buat koneksi / penghubung
@@ -114,6 +113,61 @@ namespace ConsoleApp
                         {
                             //proses tampil data siswa 
 
+                            Console.Clear();
+                            Console.WriteLine(">> Tampil data Siswa : ");
+
+                            Console.WriteLine();
+                            Console.Write("Masukkan Nama Siswa atau kosongi untuk menampilkan semua : ");
+                            string cari = Console.ReadLine();
+
+                            //buat koneksi ke access
+                            string koneksiString = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb";
+                            OleDbConnection koneksi = new OleDbConnection(koneksiString);
+                            koneksi.Open();
+
+                            //buat query
+                            string query;
+                            if (cari == "")
+                            {
+                                query = "SELECT nis,nama,kelas FROM siswa ";
+                            }
+                            else
+                            {
+                                query = "SELECT nis,nama,kelas FROM siswa WHERE nama LIKE '%"+ cari +"%'";
+                            }
+
+                            OleDbCommand cmd = new OleDbCommand(query, koneksi);
+                            OleDbDataReader reader = cmd.ExecuteReader();
+
+                            //menampung dalam data tabel
+                            DataTable dtSiswa = new DataTable();
+                            dtSiswa.Load(reader);
+
+                            //lakukan perulangan dari baris 0 sampai juml baris
+                            //for (int i = 0; i < dtSiswa.Rows.Count; i++)
+                            //{
+                            //    DataRow row = dtSiswa.Rows[i];
+                            //    Console.WriteLine(" | {0} | {1,-30} | {2,-5} | ",
+                            //        row["nis"], row["nama"], row["kelas"]);
+                            //}
+                            
+                            Console.WriteLine();
+
+                            if (dtSiswa.Rows.Count > 0)
+                            {
+                                foreach (DataRow row in dtSiswa.Rows)
+                                {
+                                    Console.WriteLine(" | {0} | {1,-30} | {2,-5} | ",
+                                        row["nis"], row["nama"], row["kelas"]);
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Data tidak ditemukan");
+                            }
+
+
+                            Console.ReadKey();
                         }
                     } while (pilihanSiswa != 5);
                     

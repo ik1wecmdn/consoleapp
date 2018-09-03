@@ -8,10 +8,17 @@ namespace ConsoleApp
 {
     class SiswaModel
     {
+        private string _nis;
         public string nis
         {
-            get;
-            set;
+            get 
+            {
+                return _nis;
+            }
+            set
+            {
+                _nis = value;
+            }
         }
         public string nama
         {
