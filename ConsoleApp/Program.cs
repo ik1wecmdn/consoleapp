@@ -30,7 +30,7 @@ namespace ConsoleApp
                 Console.WriteLine("----------------");
                 Console.Write("Masukkan Pilihan Anda [1-0] : ");
                 pilihan = int.Parse(Console.ReadLine());
-
+                
                 if (pilihan == 1)
                 {
                     int pilihanSiswa;
@@ -65,19 +65,34 @@ namespace ConsoleApp
 
                             if (jawab.ToUpper() == "Y")
                             {
-                                //ciptakan query
-                                string query = "INSERT INTO siswa (nis,nama,kelas) VALUES (@nis,@nama,@kelas)";
-                                //buat koneksi / penghubung
-                                string koneksiString = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb;";
-                                OleDbConnection koneksi = new OleDbConnection(koneksiString);
-                                koneksi.Open();
-                                //buat perintah dan eksesuksi query
-                                OleDbCommand cmd = new OleDbCommand(query, koneksi);
-                                cmd.Parameters.AddWithValue("nis", nis);
-                                cmd.Parameters.AddWithValue("nama", nama);
-                                cmd.Parameters.AddWithValue("kelas", kelas);
-                                cmd.ExecuteNonQuery();
-                                 
+                                try
+                                {
+                                    //ciptakan query
+                                    string query = "INSERT INTO siswa (nis,nama,kelas) VALUES (@nis,@nama,@kelas)";
+                                    //buat koneksi / penghubung
+                                    string koneksiString = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb;";
+                                    OleDbConnection koneksi = new OleDbConnection(koneksiString);
+                                    koneksi.Open();
+                                    //buat perintah dan eksesuksi query
+                                    OleDbCommand cmd = new OleDbCommand(query, koneksi);
+                                    cmd.Parameters.AddWithValue("@nis", nis);
+                                    cmd.Parameters.AddWithValue("@nama", nama);
+                                    cmd.Parameters.AddWithValue("@kelas", kelas);
+                                    cmd.ExecuteNonQuery();
+
+                                    Console.WriteLine("Data Berhasil Disimpan...");
+                                    Console.ReadKey();
+                                }
+                                catch (OleDbException oleEx)
+                                {
+                                    Console.WriteLine("Error simpan data... " + oleEx.Message);
+                                    Console.ReadKey();
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine("Unknown Error... " + ex.Message);
+                                    Console.ReadKey();
+                                }
                             }
                                                         
 
@@ -172,11 +187,15 @@ namespace ConsoleApp
                             if (dtSiswa.Rows.Count > 0)
                             {
                                 //tampilkan data jika ada data
+                                Console.WriteLine(" +-----+--------------------------------+-------+");
+                                Console.WriteLine(" | NIS |           NAMA                 | KELAS |");
+                                Console.WriteLine(" +-----+--------------------------------+-------+");
                                 foreach (DataRow row in dtSiswa.Rows)
                                 {
                                     Console.WriteLine(" | {0} | {1,-30} | {2,-5} | ",
                                         row["nis"], row["nama"], row["kelas"]);
                                 }
+                                Console.WriteLine(" +-----+--------------------------------+-------+");
                             }
                             else
                             {
@@ -186,6 +205,97 @@ namespace ConsoleApp
 
                             Console.ReadKey();
                         }
+                        else if (pilihanSiswa == 3)
+                        {
+                            Console.Clear();
+                            Console.WriteLine(">> Edit Data Siswa");
+                            Console.WriteLine();
+                            Console.Write("Masukkan Nis yang ingin di Edit : ");
+                            string nisLama = Console.ReadLine();
+
+                            string query = "SELECT * FROM siswa WHERE nis=@nis";
+                            string koneksiString = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb";
+                            OleDbConnection koneksi = new OleDbConnection(koneksiString);
+                            koneksi.Open();
+
+                            OleDbCommand cmd = new OleDbCommand(query, koneksi);
+                            cmd.Parameters.AddWithValue("@nis", nisLama);
+                            OleDbDataReader reader = cmd.ExecuteReader();
+
+                            DataTable dtSiswa = new DataTable();
+                            dtSiswa.Load(reader);
+
+                            if (dtSiswa.Rows.Count == 1)
+                            {
+                                //tampilkan data lama
+                                DataRow row = dtSiswa.Rows[0];
+                                Console.WriteLine("Nis   : " + row["nis"] );
+                                Console.WriteLine("Nama  : " + row["nama"]);
+                                Console.WriteLine("Kelas : " + row["kelas"]);
+
+                                //input data baru
+                                Console.WriteLine();
+                                Console.Write("Nis Baru   : ");
+                                string nisBaru = Console.ReadLine();
+                                Console.Write("Nama Baru  : ");
+                                string nama = Console.ReadLine();
+                                Console.Write("Kelas Baru : ");
+                                string kelas = Console.ReadLine();
+
+                                Console.Write("Update data siswa : [Y/N] ");
+                                string jawab = Console.ReadLine();
+                                if (jawab.ToUpper() == "Y")
+                                {
+                                    query = "UPDATE siswa SET nis=@nisBaru,nama=@nama,kelas=@kelas WHERE nis=@nis";
+                                    cmd = new OleDbCommand(query, koneksi);
+
+                                    cmd.Parameters.AddWithValue("@nisBaru", nisBaru);
+                                    cmd.Parameters.AddWithValue("@nama", nama);
+                                    cmd.Parameters.AddWithValue("@kelas", kelas);
+                                    cmd.Parameters.AddWithValue("@nis", nisLama);
+                                    
+                                    cmd.ExecuteNonQuery();
+
+                                }
+
+                            }
+                            else 
+                            {
+                                //data tidak ada
+                                Console.WriteLine("Nis yang anda masukkan salah...!!");
+                                Console.ReadKey();
+                            }
+
+
+                        }
+                        else if (pilihanSiswa == 4)
+                        {
+                            Console.Clear();
+                            Console.WriteLine(">> Hapus Data Siswa");
+                            Console.WriteLine();
+                            Console.Write("Masukkan Nis yang ingin di Hapus : ");
+                            string nis = Console.ReadLine();
+
+                            //tampilkan dulu data siswanya
+
+                            Console.Write("Yakin mau dihapus ? [Y/N] ");
+                            string jawab = Console.ReadLine();
+                            if (jawab.ToUpper() == "Y")
+                            {
+                                string koneksiString = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb";
+                                OleDbConnection koneksi = new OleDbConnection(koneksiString);
+                                koneksi.Open();
+
+                                string query = "DELETE FROM siswa WHERE nis=@nis";
+                                OleDbCommand cmd = new OleDbCommand(query, koneksi);
+                                cmd.Parameters.AddWithValue("@nis", nis);
+                                cmd.ExecuteNonQuery();
+
+
+                            }
+
+                        }
+
                     } while (pilihanSiswa != 5);
                     
 
