@@ -213,6 +213,8 @@ namespace ConsoleApp
                             Console.Write("Masukkan Nis yang ingin di Edit : ");
                             string nisLama = Console.ReadLine();
 
+                            // -- Contoh prosedural
+                            
                             string query = "SELECT * FROM siswa WHERE nis=@nis";
                             string koneksiString = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb";
                             OleDbConnection koneksi = new OleDbConnection(koneksiString);
@@ -265,7 +267,39 @@ namespace ConsoleApp
                                 Console.WriteLine("Nis yang anda masukkan salah...!!");
                                 Console.ReadKey();
                             }
+                            
 
+                            // -- contoh penggunaan oop
+                            /*
+                            SiswaSvc siswa = new SiswaSvc();
+                            SiswaModel data = siswa.GetByNis(nisLama);
+                            if (data != null)
+                            {
+                                //tampil data lama
+                                Console.WriteLine("Nis   : " + data.nis);
+                                Console.WriteLine("Nama  : " + data.nama);
+                                Console.WriteLine("Kelas : " + data.kelas);
+                                //input data baru
+                                Console.WriteLine();
+                                SiswaModel dataBaru = new SiswaModel();
+                                Console.Write("Nis Baru   : ");
+                                dataBaru.nis = Console.ReadLine();
+                                Console.Write("Nama Baru  : ");
+                                dataBaru.nama = Console.ReadLine();
+                                Console.Write("Kelas Baru : ");
+                                dataBaru.kelas = Console.ReadLine();
+                                Console.Write("Update data siswa : [Y/N] ");
+                                string jawab = Console.ReadLine();
+                                if (jawab.ToUpper() == "Y")
+                                {
+                                    siswa.Edit(data.nis, dataBaru);
+                                }
+                            }
+                            else
+                            {
+                                //data tidak ada
+                            }
+                            */
 
                         }
                         else if (pilihanSiswa == 4)
@@ -278,10 +312,13 @@ namespace ConsoleApp
 
                             //tampilkan dulu data siswanya
 
+                            //-- contoh penggunaan procedural
+                            
                             Console.Write("Yakin mau dihapus ? [Y/N] ");
                             string jawab = Console.ReadLine();
                             if (jawab.ToUpper() == "Y")
                             {
+                                // --contoh penggunaan procedural
                                 string koneksiString = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb";
                                 OleDbConnection koneksi = new OleDbConnection(koneksiString);
                                 koneksi.Open();
@@ -290,9 +327,16 @@ namespace ConsoleApp
                                 OleDbCommand cmd = new OleDbCommand(query, koneksi);
                                 cmd.Parameters.AddWithValue("@nis", nis);
                                 cmd.ExecuteNonQuery();
+                                
 
+                                //-- contoh penggunaan oop
+                                /*
+                                SiswaSvc siswa = new SiswaSvc();
+                                siswa.Hapus(nis);
+                                */
 
                             }
+
 
                         }
 
