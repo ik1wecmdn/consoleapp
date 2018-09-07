@@ -1,33 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using System.Data;
-using System.Data.OleDb;
-
+using MySql.Data.MySqlClient;
 
 namespace ConsoleApp
 {
-    class AccessDB
+    class MySQLDB
     {
-        OleDbConnection koneksi;
+        MySqlConnection koneksi;
         
-        public AccessDB()
+        public MySQLDB()
         {
-            //constructor
-            string koneksiString = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb;";
-            koneksi = new OleDbConnection(koneksiString);
+            string koneksiString = "Server=127.0.0.1;user=root;password=;database=dbsekolah";
+            koneksi = new MySqlConnection(koneksiString);
             koneksi.Open();
         }
 
         //untuk insert update dan delete
         public void Execute(string query, Dictionary<string, dynamic> data = null)
         {
-            //untuk execute command
-            OleDbCommand cmd = new OleDbCommand(query, koneksi);
-            if (data != null) 
+            MySqlCommand cmd = new MySqlCommand(query, koneksi);
+            if (data != null)
             {
                 foreach (string key in data.Keys)
                 {
@@ -42,7 +39,7 @@ namespace ConsoleApp
         //untuk select
         public DataTable GetData(string query, Dictionary<string, dynamic> data = null)
         {
-            OleDbCommand cmd = new OleDbCommand(query, koneksi);
+            MySqlCommand cmd = new MySqlCommand(query, koneksi);
             if (data != null)
             {
                 foreach (string key in data.Keys)
@@ -50,16 +47,15 @@ namespace ConsoleApp
                     cmd.Parameters.AddWithValue(key, data[key]);
                 }
             }
-            OleDbDataReader reader = cmd.ExecuteReader();
-
+            MySqlDataReader reader = cmd.ExecuteReader();
+            
             DataTable result = new DataTable();
-            //isi result dari reader
             result.Load(reader);
 
             return result;
         }
 
-        ~AccessDB()
+        ~MySQLDB()
         {
             //destructor
             koneksi.Close();

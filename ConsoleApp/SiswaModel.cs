@@ -19,6 +19,10 @@ namespace ConsoleApp
             }
             set
             {
+                if (value == "")
+                {
+                    throw new Exception("Nis tidak boleh kosong");
+                }
                 _nis = value;
             }
         }
@@ -30,7 +34,7 @@ namespace ConsoleApp
             }
             set
             {
-                _nama = value;
+                _nama = value.ToUpper();
             }
         }
         public string kelas

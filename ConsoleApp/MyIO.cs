@@ -10,15 +10,12 @@ namespace ConsoleApp
     {
         
 
-        public static void Tulis(int kiri, int atas, string teks)
+        public static void Tulis(int kiri, int atas, string teks, ConsoleColor warnaTeks = ConsoleColor.White, ConsoleColor warnaBg = ConsoleColor.Black)
         {
-
-        }
-
-        public static void TulisWarna(int kiri, int atas, string teks, ConsoleColor warnaTeks, ConsoleColor warnaBackground)
-        {
- 
-
+            Console.ForegroundColor = warnaTeks;
+            Console.BackgroundColor = warnaBg;
+            Console.SetCursorPosition(kiri, atas);
+            Console.WriteLine(teks);
         }
 
         public static string InputString(int kiri, int atas)

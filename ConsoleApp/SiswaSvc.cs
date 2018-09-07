@@ -14,7 +14,7 @@ namespace ConsoleApp
         public DataTable GetAll()
         {
             string query = "SELECT nis,nama,kelas FROM siswa";
-            AccessDB db = new AccessDB();
+            MySQLDB db = new MySQLDB();
             return db.GetData(query);
         }
 
@@ -22,9 +22,11 @@ namespace ConsoleApp
         {
             SiswaModel data = null;
             string query = "SELECT nis,nama,kelas FROM siswa WHERE nis=@kriteria";
-            AccessDB db = new AccessDB();
-            DataTable dtSiswa = db.GetData(query,
-                new OleDbParameter("@kriteria", nis));
+            MySQLDB db = new MySQLDB();
+            DataTable dtSiswa = db.GetData(query, new Dictionary<string, dynamic>()
+            {
+                {"@kriteria", nis}
+            });
             if (dtSiswa.Rows.Count == 1)
             {
                 //ambil satu baris saja
@@ -42,38 +44,46 @@ namespace ConsoleApp
         public DataTable GetByName(string nama)
         {
             string query = "SELECT nis,nama,kelas FROM siswa WHERE nama LIKE @kriteria";
-            AccessDB db = new AccessDB();
-            return db.GetData(query, 
-                new OleDbParameter("@kriteria", "%" + nama + "%"));
+            MySQLDB db = new MySQLDB();
+            return db.GetData(query, new Dictionary<string, dynamic>()
+            {
+               {"@kriteria", "%" + nama + "%"}
+            });
         }
 
         public void Add(SiswaModel data)
         {
             string query = "INSERT INTO siswa (nis,nama,kelas) VALUES (@nis,@nama,@kelas)";
-            AccessDB db = new AccessDB();
-            db.Execute(query,
-                new OleDbParameter("@nis", data.nis),
-                new OleDbParameter("@nama", data.nama),
-                new OleDbParameter("@kelas", data.kelas));
+            MySQLDB db = new MySQLDB();
+            db.Execute(query, new Dictionary<string, dynamic>()
+            {
+                {"@nis", data.nis},
+                {"@nama", data.nama},
+                {"@kelas", data.kelas}
+            });
         }
 
         public void Edit(string nis, SiswaModel data)
         {
             string query = "UPDATE siswa SET nis=@nisBaru,nama=@namaBaru,kelas=@kelasBaru WHERE nis=@nisLama";
-            AccessDB db = new AccessDB();
-            db.Execute(query,
-                new OleDbParameter("@nisBaru", data.nis),
-                new OleDbParameter("@namaBaru", data.nama),
-                new OleDbParameter("@kelasBaru", data.kelas),
-                new OleDbParameter("@nisLama", nis));
+            MySQLDB db = new MySQLDB();
+            db.Execute(query, new Dictionary<string, dynamic>()
+            {
+                {"@nisBaru", data.nis},
+                {"@namaBaru", data.nama},
+                {"@kelasBaru", data.kelas},
+                {"@nisLama", nis}
+            });
         }
 
         public void Hapus(string nis)
         {
             string query = "DELETE FROM siswa WHERE nis=@kriteria";
-            AccessDB db = new AccessDB();
-            db.Execute(query, 
-                new OleDbParameter("@kriteria", nis));
+            MySQLDB db = new MySQLDB();
+            db.Execute(query, new Dictionary<string, dynamic>()
+            {
+                {"@kriteria", nis}
+            });
 
         }
 

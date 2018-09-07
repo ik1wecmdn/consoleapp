@@ -51,6 +51,7 @@ namespace ConsoleApp
                         {
                             
                             //proses tambah siswa menggunakan procedural
+                            /*
                             Console.Clear();
                             Console.WriteLine(">> Input Data Siswa");
                             Console.Write("NIS      : ");
@@ -94,12 +95,12 @@ namespace ConsoleApp
                                     Console.ReadKey();
                                 }
                             }
-                                                        
+                            */                            
 
 
                             //menambah data menggunakan konsep oop (lihat file siswasvc, siswamodel, accessdb
                             
-                            /*
+                            
                             
                             SiswaModel data = new SiswaModel();
                             Console.Clear();
@@ -121,7 +122,7 @@ namespace ConsoleApp
                                 siswa.Add(data);
                             }
                             
-                            */
+                            
 
                         }
                         else if (pilihanSiswa == 2)
@@ -136,7 +137,7 @@ namespace ConsoleApp
                             string cari = Console.ReadLine();
 
                             //---- Tampil Data Procedural --
-
+                            /*
                             //buat koneksi ke access
                             string koneksiString = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb";
                             OleDbConnection koneksi = new OleDbConnection(koneksiString);
@@ -159,18 +160,18 @@ namespace ConsoleApp
                             //menampung dalam data tabel
                             DataTable dtSiswa = new DataTable();
                             dtSiswa.Load(reader);
-                            
+                            */
                             //---- End Tampil Data Procedural --
 
                             //Contoh penggunaan OOP cek file siswasvc dan accessdb
-                            /*
+                            
                             SiswaSvc siswa = new SiswaSvc();
                             DataTable dtSiswa;
                             if (cari == "")
                                 dtSiswa = siswa.GetAll();
                             else
                                 dtSiswa = siswa.GetByName(cari);
-                            */
+                            
 
                             
                             // -- menampilkan data 
@@ -214,7 +215,7 @@ namespace ConsoleApp
                             string nisLama = Console.ReadLine();
 
                             // -- Contoh prosedural
-                            
+                            /*
                             string query = "SELECT * FROM siswa WHERE nis=@nis";
                             string koneksiString = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb";
                             OleDbConnection koneksi = new OleDbConnection(koneksiString);
@@ -267,10 +268,11 @@ namespace ConsoleApp
                                 Console.WriteLine("Nis yang anda masukkan salah...!!");
                                 Console.ReadKey();
                             }
-                            
+                            */
+                            // -- end procdural
 
                             // -- contoh penggunaan oop
-                            /*
+                            
                             SiswaSvc siswa = new SiswaSvc();
                             SiswaModel data = siswa.GetByNis(nisLama);
                             if (data != null)
@@ -299,7 +301,7 @@ namespace ConsoleApp
                             {
                                 //data tidak ada
                             }
-                            */
+                            
 
                         }
                         else if (pilihanSiswa == 4)
@@ -311,14 +313,13 @@ namespace ConsoleApp
                             string nis = Console.ReadLine();
 
                             //tampilkan dulu data siswanya
-
-                            //-- contoh penggunaan procedural
                             
                             Console.Write("Yakin mau dihapus ? [Y/N] ");
                             string jawab = Console.ReadLine();
                             if (jawab.ToUpper() == "Y")
                             {
-                                // --contoh penggunaan procedural
+                                // --contoh penggunaan procedural\
+                                /*
                                 string koneksiString = "Provider=Microsoft.Ace.OleDB.12.0;Data Source=Database.accdb";
                                 OleDbConnection koneksi = new OleDbConnection(koneksiString);
                                 koneksi.Open();
@@ -327,13 +328,13 @@ namespace ConsoleApp
                                 OleDbCommand cmd = new OleDbCommand(query, koneksi);
                                 cmd.Parameters.AddWithValue("@nis", nis);
                                 cmd.ExecuteNonQuery();
-                                
+                                */
 
                                 //-- contoh penggunaan oop
-                                /*
+                                
                                 SiswaSvc siswa = new SiswaSvc();
                                 siswa.Hapus(nis);
-                                */
+                                
 
                             }
 
