@@ -15,7 +15,7 @@ namespace ConsoleApp
         
         public MySQLDB()
         {
-            string koneksiString = "Server=127.0.0.1;user=root;password=;database=dbsekolah";
+            string koneksiString = "Server=davidnakoko.com;user=davidnakoko_ik12018;password=wearnesik1;database=davidnakoko_ik12018";
             koneksi = new MySqlConnection(koneksiString);
             koneksi.Open();
         }

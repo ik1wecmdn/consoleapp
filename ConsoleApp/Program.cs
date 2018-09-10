@@ -187,7 +187,9 @@ namespace ConsoleApp
 
                             if (dtSiswa.Rows.Count > 0)
                             {
+
                                 //tampilkan data jika ada data
+                                /*
                                 Console.WriteLine(" +-----+--------------------------------+-------+");
                                 Console.WriteLine(" | NIS |           NAMA                 | KELAS |");
                                 Console.WriteLine(" +-----+--------------------------------+-------+");
@@ -197,6 +199,46 @@ namespace ConsoleApp
                                         row["nis"], row["nama"], row["kelas"]);
                                 }
                                 Console.WriteLine(" +-----+--------------------------------+-------+");
+                                */
+
+                                string judul = "NIS            NAMA                                      KELAS";
+                                MyIO.Tulis(8, 6, judul, ConsoleColor.Green, ConsoleColor.Black);
+                                MyIO.BuatKotak(5, 5, 15, 7);
+                                MyIO.BuatKotak(15, 5, 60, 7);
+                                MyIO.BuatKotak(60, 5, 80, 7);
+                                MyIO.BuatKotak(5, 7, 80, 15);
+                                MyIO.Tulis(15, 5, "┬", ConsoleColor.Green, ConsoleColor.Black);
+                                MyIO.Tulis(60, 5, "┬", ConsoleColor.Green, ConsoleColor.Black);
+                                MyIO.Tulis(5, 7, "├", ConsoleColor.Green, ConsoleColor.Black);
+                                MyIO.Tulis(15, 7, "┼", ConsoleColor.Green, ConsoleColor.Black);
+                                MyIO.Tulis(60, 7, "┼", ConsoleColor.Green, ConsoleColor.Black);
+                                MyIO.Tulis(80, 7, "┤", ConsoleColor.Green, ConsoleColor.Black);
+                                MyIO.Tulis(15, 15, "┴", ConsoleColor.Green, ConsoleColor.Black);
+                                MyIO.Tulis(60, 15, "┴", ConsoleColor.Green, ConsoleColor.Black);
+                                int baris = 8;
+                                foreach(DataRow row in dtSiswa.Rows)
+                                {
+                                    MyIO.Tulis(7, baris, row["nis"].ToString());
+                                    MyIO.Tulis(17, baris, row["nama"].ToString());
+                                    MyIO.Tulis(62, baris, row["kelas"].ToString());
+                                    MyIO.Tulis(15, baris, "│", ConsoleColor.Green, ConsoleColor.Black);
+                                    MyIO.Tulis(60, baris, "│", ConsoleColor.Green, ConsoleColor.Black);
+                                    baris++;
+                                    if (baris == 15)
+                                    {
+                                        MyIO.Tulis(5, 16, "Tekan sembarang tombol untuk melanjutkan...!", ConsoleColor.Yellow);
+                                        Console.ReadKey();
+                                        for (int i = 8; i < 15; i++)
+                                        {
+                                            MyIO.Tulis(6, i, "      ");
+                                            MyIO.Tulis(17, i, "                          ");
+                                            MyIO.Tulis(62, i, "          ");
+                                        }
+                                        baris = 8;
+                                    }
+                                }
+
+
                             }
                             else
                             {
