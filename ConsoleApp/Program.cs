@@ -18,16 +18,16 @@ namespace ConsoleApp
             do
             {
                 Console.Clear();
-                Console.WriteLine("WEARNES EDUCATION CENTER MADIUN");
-                Console.WriteLine("Informatika 1 - 2018");
-                Console.WriteLine("--------------------------------");
-                Console.WriteLine();
-                Console.WriteLine("Menu : ");
-                Console.WriteLine("1. Data Siswa");
-                Console.WriteLine("2. Data Guru");
-                Console.WriteLine("3. Data Nilai");
-                Console.WriteLine("0. Keluar");
-                Console.WriteLine("----------------");
+                MyIO.Tulis("WEARNES EDUCATION CENTER MADIUN");
+                MyIO.Tulis("Informatika 1 - 2018");
+                MyIO.Tulis("--------------------------------");
+                MyIO.Tulis("");
+                MyIO.Tulis("Menu : ");
+                MyIO.Tulis("1. Data Siswa");
+                MyIO.Tulis("2. Data Guru");
+                MyIO.Tulis("3. Data Nilai");
+                MyIO.Tulis("0. Keluar");
+                MyIO.Tulis("----------------");
                 Console.Write("Masukkan Pilihan Anda [1-0] : ");
                 pilihan = int.Parse(Console.ReadLine());
                 
@@ -38,13 +38,13 @@ namespace ConsoleApp
                     do
                     {
                         Console.Clear();
-                        Console.WriteLine(":: Pengolahan Data Siswa");
-                        Console.WriteLine("------------------------");
-                        Console.WriteLine("1. Tambah Data Siswa ");
-                        Console.WriteLine("2. Tampil Data Siswa ");
-                        Console.WriteLine("3. Edit Data Siswa ");
-                        Console.WriteLine("4. Hapus Data Siswa ");
-                        Console.WriteLine("5. Kembali ke Menu Awal");
+                        MyIO.Tulis(":: Pengolahan Data Siswa");
+                        MyIO.Tulis("------------------------");
+                        MyIO.Tulis("1. Tambah Data Siswa ");
+                        MyIO.Tulis("2. Tampil Data Siswa ");
+                        MyIO.Tulis("3. Edit Data Siswa ");
+                        MyIO.Tulis("4. Hapus Data Siswa ");
+                        MyIO.Tulis("5. Kembali ke Menu Awal");
                         Console.Write("Masukkan Pilihan Anda [1-5] : ");
                         pilihanSiswa = int.Parse(Console.ReadLine());
                         if (pilihanSiswa == 1)
@@ -53,7 +53,7 @@ namespace ConsoleApp
                             //proses tambah siswa menggunakan procedural
                             /*
                             Console.Clear();
-                            Console.WriteLine(">> Input Data Siswa");
+                            MyIO.Tulis(">> Input Data Siswa");
                             Console.Write("NIS      : ");
                             string nis = Console.ReadLine();
                             Console.Write("NAMA     : ");
@@ -81,17 +81,17 @@ namespace ConsoleApp
                                     cmd.Parameters.AddWithValue("@kelas", kelas);
                                     cmd.ExecuteNonQuery();
 
-                                    Console.WriteLine("Data Berhasil Disimpan...");
+                                    MyIO.Tulis("Data Berhasil Disimpan...");
                                     Console.ReadKey();
                                 }
                                 catch (OleDbException oleEx)
                                 {
-                                    Console.WriteLine("Error simpan data... " + oleEx.Message);
+                                    MyIO.Tulis("Error simpan data... " + oleEx.Message);
                                     Console.ReadKey();
                                 }
                                 catch (Exception ex)
                                 {
-                                    Console.WriteLine("Unknown Error... " + ex.Message);
+                                    MyIO.Tulis("Unknown Error... " + ex.Message);
                                     Console.ReadKey();
                                 }
                             }
@@ -104,7 +104,7 @@ namespace ConsoleApp
                             
                             SiswaModel data = new SiswaModel();
                             Console.Clear();
-                            Console.WriteLine(">> Input Data Siswa");
+                            MyIO.Tulis(">> Input Data Siswa");
                             Console.Write("NIS      : ");
                             data.nis = Console.ReadLine();
                             Console.Write("NAMA     : ");
@@ -130,9 +130,9 @@ namespace ConsoleApp
                             //proses tampil data siswa 
 
                             Console.Clear();
-                            Console.WriteLine(">> Tampil data Siswa : ");
+                            MyIO.Tulis(">> Tampil data Siswa : ");
 
-                            Console.WriteLine();
+                            MyIO.Tulis("");
                             Console.Write("Masukkan Nama Siswa atau kosongi untuk menampilkan semua : ");
                             string cari = Console.ReadLine();
 
@@ -179,26 +179,26 @@ namespace ConsoleApp
                             // for (int i = 0; i < dtSiswa.Rows.Count; i++)
                             // {
                             //     DataRow row = dtSiswa.Rows[i];
-                            //     Console.WriteLine(" | {0} | {1,-30} | {2,-5} | ",
+                            //     MyIO.Tulis(" | {0} | {1,-30} | {2,-5} | ",
                             //         row["nis"], row["nama"], row["kelas"]);
                             // }
                             
-                            Console.WriteLine();
+                            MyIO.Tulis("");
 
                             if (dtSiswa.Rows.Count > 0)
                             {
 
                                 //tampilkan data jika ada data
                                 /*
-                                Console.WriteLine(" +-----+--------------------------------+-------+");
-                                Console.WriteLine(" | NIS |           NAMA                 | KELAS |");
-                                Console.WriteLine(" +-----+--------------------------------+-------+");
+                                MyIO.Tulis(" +-----+--------------------------------+-------+");
+                                MyIO.Tulis(" | NIS |           NAMA                 | KELAS |");
+                                MyIO.Tulis(" +-----+--------------------------------+-------+");
                                 foreach (DataRow row in dtSiswa.Rows)
                                 {
-                                    Console.WriteLine(" | {0} | {1,-30} | {2,-5} | ",
+                                    MyIO.Tulis(" | {0} | {1,-30} | {2,-5} | ",
                                         row["nis"], row["nama"], row["kelas"]);
                                 }
-                                Console.WriteLine(" +-----+--------------------------------+-------+");
+                                MyIO.Tulis(" +-----+--------------------------------+-------+");
                                 */
 
                                 string judul = "NIS            NAMA                                      KELAS";
@@ -242,7 +242,7 @@ namespace ConsoleApp
                             }
                             else
                             {
-                                Console.WriteLine("Data tidak ditemukan");
+                                MyIO.Tulis("Data tidak ditemukan");
                             }
 
 
@@ -251,8 +251,8 @@ namespace ConsoleApp
                         else if (pilihanSiswa == 3)
                         {
                             Console.Clear();
-                            Console.WriteLine(">> Edit Data Siswa");
-                            Console.WriteLine();
+                            MyIO.Tulis(">> Edit Data Siswa");
+                            MyIO.Tulis("");
                             Console.Write("Masukkan Nis yang ingin di Edit : ");
                             string nisLama = Console.ReadLine();
 
@@ -274,12 +274,12 @@ namespace ConsoleApp
                             {
                                 //tampilkan data lama
                                 DataRow row = dtSiswa.Rows[0];
-                                Console.WriteLine("Nis   : " + row["nis"] );
-                                Console.WriteLine("Nama  : " + row["nama"]);
-                                Console.WriteLine("Kelas : " + row["kelas"]);
+                                MyIO.Tulis("Nis   : " + row["nis"] );
+                                MyIO.Tulis("Nama  : " + row["nama"]);
+                                MyIO.Tulis("Kelas : " + row["kelas"]);
 
                                 //input data baru
-                                Console.WriteLine();
+                                MyIO.Tulis();
                                 Console.Write("Nis Baru   : ");
                                 string nisBaru = Console.ReadLine();
                                 Console.Write("Nama Baru  : ");
@@ -307,7 +307,7 @@ namespace ConsoleApp
                             else 
                             {
                                 //data tidak ada
-                                Console.WriteLine("Nis yang anda masukkan salah...!!");
+                                MyIO.Tulis("Nis yang anda masukkan salah...!!");
                                 Console.ReadKey();
                             }
                             */
@@ -320,11 +320,11 @@ namespace ConsoleApp
                             if (data != null)
                             {
                                 //tampil data lama
-                                Console.WriteLine("Nis   : " + data.nis);
-                                Console.WriteLine("Nama  : " + data.nama);
-                                Console.WriteLine("Kelas : " + data.kelas);
+                                MyIO.Tulis("Nis   : " + data.nis);
+                                MyIO.Tulis("Nama  : " + data.nama);
+                                MyIO.Tulis("Kelas : " + data.kelas);
                                 //input data baru
-                                Console.WriteLine();
+                                MyIO.Tulis("");
                                 SiswaModel dataBaru = new SiswaModel();
                                 Console.Write("Nis Baru   : ");
                                 dataBaru.nis = Console.ReadLine();
@@ -349,8 +349,8 @@ namespace ConsoleApp
                         else if (pilihanSiswa == 4)
                         {
                             Console.Clear();
-                            Console.WriteLine(">> Hapus Data Siswa");
-                            Console.WriteLine();
+                            MyIO.Tulis(">> Hapus Data Siswa");
+                            MyIO.Tulis("");
                             Console.Write("Masukkan Nis yang ingin di Hapus : ");
                             string nis = Console.ReadLine();
 
