@@ -206,7 +206,9 @@ namespace ConsoleApp
                                 MyIO.BuatKotak(5, 5, 15, 7);
                                 MyIO.BuatKotak(15, 5, 60, 7);
                                 MyIO.BuatKotak(60, 5, 80, 7);
-                                MyIO.BuatKotak(5, 7, 80, 15);
+                                MyIO.BuatKotak(5, 7, 15, 15);
+                                MyIO.BuatKotak(15, 7, 60, 15);
+                                MyIO.BuatKotak(60, 7, 80, 15);
                                 MyIO.Tulis(15, 5, "┬", ConsoleColor.Green, ConsoleColor.Black);
                                 MyIO.Tulis(60, 5, "┬", ConsoleColor.Green, ConsoleColor.Black);
                                 MyIO.Tulis(5, 7, "├", ConsoleColor.Green, ConsoleColor.Black);
@@ -221,8 +223,6 @@ namespace ConsoleApp
                                     MyIO.Tulis(7, baris, row["nis"].ToString());
                                     MyIO.Tulis(17, baris, row["nama"].ToString());
                                     MyIO.Tulis(62, baris, row["kelas"].ToString());
-                                    MyIO.Tulis(15, baris, "│", ConsoleColor.Green, ConsoleColor.Black);
-                                    MyIO.Tulis(60, baris, "│", ConsoleColor.Green, ConsoleColor.Black);
                                     baris++;
                                     if (baris == 15)
                                     {
