@@ -18,17 +18,17 @@ namespace ConsoleApp
             do
             {
                 Console.Clear();
-                MyIO.TulisLn("WEARNES EDUCATION CENTER MADIUN");
-                MyIO.TulisLn("Informatika 1 - 2018");
-                MyIO.TulisLn("--------------------------------");
-                MyIO.TulisLn("");
-                MyIO.TulisLn("Menu : ");
-                MyIO.TulisLn("1. Data Siswa");
-                MyIO.TulisLn("2. Data Guru");
-                MyIO.TulisLn("3. Data Nilai");
-                MyIO.TulisLn("0. Keluar");
-                MyIO.TulisLn("----------------");
-                Console.Write("Masukkan Pilihan Anda [1-0] : ");
+                MyIO.Tulis("WEARNES EDUCATION CENTER MADIUN");
+                MyIO.Tulis("Informatika 1 - 2018");
+                MyIO.Tulis("--------------------------------");
+                MyIO.Tulis("");
+                MyIO.Tulis("Menu : ");
+                MyIO.Tulis("1. Data Siswa");
+                MyIO.Tulis("2. Data Guru");
+                MyIO.Tulis("3. Data Nilai");
+                MyIO.Tulis("0. Keluar");
+                MyIO.Tulis("----------------");
+                MyIO.Label("Masukkan Pilihan Anda [1-0] : ");
                 pilihan = MyIO.InputInt();
                 
                 if (pilihan == 1)
@@ -38,14 +38,14 @@ namespace ConsoleApp
                     do
                     {
                         Console.Clear();
-                        MyIO.TulisLn(":: Pengolahan Data Siswa");
-                        MyIO.TulisLn("------------------------");
-                        MyIO.TulisLn("1. Tambah Data Siswa ");
-                        MyIO.TulisLn("2. Tampil Data Siswa ");
-                        MyIO.TulisLn("3. Edit Data Siswa ");
-                        MyIO.TulisLn("4. Hapus Data Siswa ");
-                        MyIO.TulisLn("5. Kembali ke Menu Awal");
-                        Console.Write("Masukkan Pilihan Anda [1-5] : ");
+                        MyIO.Tulis(":: Pengolahan Data Siswa");
+                        MyIO.Tulis("------------------------");
+                        MyIO.Tulis("1. Tambah Data Siswa ");
+                        MyIO.Tulis("2. Tampil Data Siswa ");
+                        MyIO.Tulis("3. Edit Data Siswa ");
+                        MyIO.Tulis("4. Hapus Data Siswa ");
+                        MyIO.Tulis("5. Kembali ke Menu Awal");
+                        MyIO.Label("Masukkan Pilihan Anda [1-5] : ");
                         pilihanSiswa = MyIO.InputInt();
                         if (pilihanSiswa == 1)
                         {
@@ -54,14 +54,14 @@ namespace ConsoleApp
                             /*
                             Console.Clear();
                             MyIO.Tulis(">> Input Data Siswa");
-                            Console.Write("NIS      : ");
+                            MyIO.Label("NIS      : ");
                             string nis = MyIO.InputString();
-                            Console.Write("NAMA     : ");
+                            MyIO.Label("NAMA     : ");
                             string nama = MyIO.InputString();
-                            Console.Write("KELAS    : ");
+                            MyIO.Label("KELAS    : ");
                             string kelas = MyIO.InputString();
 
-                            Console.Write("Simpan Data ? [Y/N] ");
+                            MyIO.Label("Simpan Data ? [Y/N] ");
                             string jawab = MyIO.InputString();
 
                             if (jawab.ToUpper() == "Y")
@@ -104,15 +104,15 @@ namespace ConsoleApp
                             
                             SiswaModel data = new SiswaModel();
                             Console.Clear();
-                            MyIO.TulisLn(">> Input Data Siswa");
-                            Console.Write("NIS      : ");
+                            MyIO.Tulis(">> Input Data Siswa");
+                            MyIO.Label("NIS      : ");
                             data.nis = MyIO.InputString();
-                            Console.Write("NAMA     : ");
+                            MyIO.Label("NAMA     : ");
                             data.nama = MyIO.InputString();
-                            Console.Write("KELAS    : ");
+                            MyIO.Label("KELAS    : ");
                             data.kelas = MyIO.InputString();
 
-                            Console.Write("Simpan Data ? [Y/N] ");
+                            MyIO.Label("Simpan Data ? [Y/N] ");
                             string jawab = MyIO.InputString();
 
                             if (jawab.ToUpper() == "Y")
@@ -130,11 +130,11 @@ namespace ConsoleApp
                             //proses tampil data siswa 
 
                             Console.Clear();
-                            MyIO.TulisLn(">> Tampil data Siswa : ");
+                            MyIO.Tulis(">> Tampil data Siswa : ");
 
-                            MyIO.TulisLn("");
-                            Console.Write("Masukkan Nama Siswa atau kosongi untuk menampilkan semua : ");
-                            string cari = MyIO.InputString();
+                            MyIO.Tulis("");
+                            MyIO.Label("Masukkan Nama Siswa atau kosongi untuk menampilkan semua : ");
+                            string cari = Console.ReadLine();
 
                             //---- Tampil Data Procedural --
                             /*
@@ -183,7 +183,7 @@ namespace ConsoleApp
                             //         row["nis"], row["nama"], row["kelas"]);
                             // }
                             
-                            MyIO.TulisLn("");
+                            MyIO.Tulis("");
 
                             if (dtSiswa.Rows.Count > 0)
                             {
@@ -202,37 +202,37 @@ namespace ConsoleApp
                                 */
 
                                 string judul = "NIS            NAMA                                      KELAS";
-                                MyIO.TulisLn(8, 6, judul, ConsoleColor.Green, ConsoleColor.Black);
+                                MyIO.Tulis(8, 6, judul, ConsoleColor.Green, ConsoleColor.Black);
                                 MyIO.BuatKotak(5, 5, 15, 7);
                                 MyIO.BuatKotak(15, 5, 60, 7);
                                 MyIO.BuatKotak(60, 5, 80, 7);
                                 MyIO.BuatKotak(5, 7, 15, 15);
                                 MyIO.BuatKotak(15, 7, 60, 15);
                                 MyIO.BuatKotak(60, 7, 80, 15);
-                                MyIO.TulisLn(15, 5, "┬", ConsoleColor.Green, ConsoleColor.Black);
-                                MyIO.TulisLn(60, 5, "┬", ConsoleColor.Green, ConsoleColor.Black);
-                                MyIO.TulisLn(5, 7, "├", ConsoleColor.Green, ConsoleColor.Black);
-                                MyIO.TulisLn(15, 7, "┼", ConsoleColor.Green, ConsoleColor.Black);
-                                MyIO.TulisLn(60, 7, "┼", ConsoleColor.Green, ConsoleColor.Black);
-                                MyIO.TulisLn(80, 7, "┤", ConsoleColor.Green, ConsoleColor.Black);
-                                MyIO.TulisLn(15, 15, "┴", ConsoleColor.Green, ConsoleColor.Black);
-                                MyIO.TulisLn(60, 15, "┴", ConsoleColor.Green, ConsoleColor.Black);
+                                MyIO.Tulis(15, 5, "┬", ConsoleColor.Green, ConsoleColor.Black);
+                                MyIO.Tulis(60, 5, "┬", ConsoleColor.Green, ConsoleColor.Black);
+                                MyIO.Tulis(5, 7, "├", ConsoleColor.Green, ConsoleColor.Black);
+                                MyIO.Tulis(15, 7, "┼", ConsoleColor.Green, ConsoleColor.Black);
+                                MyIO.Tulis(60, 7, "┼", ConsoleColor.Green, ConsoleColor.Black);
+                                MyIO.Tulis(80, 7, "┤", ConsoleColor.Green, ConsoleColor.Black);
+                                MyIO.Tulis(15, 15, "┴", ConsoleColor.Green, ConsoleColor.Black);
+                                MyIO.Tulis(60, 15, "┴", ConsoleColor.Green, ConsoleColor.Black);
                                 int baris = 8;
                                 foreach(DataRow row in dtSiswa.Rows)
                                 {
-                                    MyIO.TulisLn(7, baris, row["nis"].ToString());
-                                    MyIO.TulisLn(17, baris, row["nama"].ToString());
-                                    MyIO.TulisLn(62, baris, row["kelas"].ToString());
+                                    MyIO.Tulis(7, baris, row["nis"].ToString());
+                                    MyIO.Tulis(17, baris, row["nama"].ToString());
+                                    MyIO.Tulis(62, baris, row["kelas"].ToString());
                                     baris++;
                                     if (baris == 15)
                                     {
-                                        MyIO.TulisLn(5, 16, "Tekan sembarang tombol untuk melanjutkan...!", ConsoleColor.Yellow);
+                                        MyIO.Tulis(5, 16, "Tekan sembarang tombol untuk melanjutkan...!", ConsoleColor.Yellow);
                                         Console.ReadKey();
                                         for (int i = 8; i < 15; i++)
                                         {
-                                            MyIO.TulisLn(6, i, "      ");
-                                            MyIO.TulisLn(17, i, "                          ");
-                                            MyIO.TulisLn(62, i, "          ");
+                                            MyIO.Tulis(6, i, "      ");
+                                            MyIO.Tulis(17, i, "                          ");
+                                            MyIO.Tulis(62, i, "          ");
                                         }
                                         baris = 8;
                                     }
@@ -242,7 +242,7 @@ namespace ConsoleApp
                             }
                             else
                             {
-                                MyIO.TulisLn("Data tidak ditemukan");
+                                MyIO.Tulis("Data tidak ditemukan");
                             }
 
 
@@ -251,9 +251,9 @@ namespace ConsoleApp
                         else if (pilihanSiswa == 3)
                         {
                             Console.Clear();
-                            MyIO.TulisLn(">> Edit Data Siswa");
-                            MyIO.TulisLn("");
-                            Console.Write("Masukkan Nis yang ingin di Edit : ");
+                            MyIO.Tulis(">> Edit Data Siswa");
+                            MyIO.Tulis("");
+                            MyIO.Label("Masukkan Nis yang ingin di Edit : ");
                             string nisLama = MyIO.InputString();
 
                             // -- Contoh prosedural
@@ -280,14 +280,14 @@ namespace ConsoleApp
 
                                 //input data baru
                                 MyIO.Tulis();
-                                Console.Write("Nis Baru   : ");
+                                MyIO.Label("Nis Baru   : ");
                                 string nisBaru = MyIO.InputString();
-                                Console.Write("Nama Baru  : ");
+                                MyIO.Label("Nama Baru  : ");
                                 string nama = MyIO.InputString();
-                                Console.Write("Kelas Baru : ");
+                                MyIO.Label("Kelas Baru : ");
                                 string kelas = MyIO.InputString();
 
-                                Console.Write("Update data siswa : [Y/N] ");
+                                MyIO.Label("Update data siswa : [Y/N] ");
                                 string jawab = MyIO.InputString();
                                 if (jawab.ToUpper() == "Y")
                                 {
@@ -320,19 +320,19 @@ namespace ConsoleApp
                             if (data != null)
                             {
                                 //tampil data lama
-                                MyIO.TulisLn("Nis   : " + data.nis);
-                                MyIO.TulisLn("Nama  : " + data.nama);
-                                MyIO.TulisLn("Kelas : " + data.kelas);
+                                MyIO.Tulis("Nis   : " + data.nis);
+                                MyIO.Tulis("Nama  : " + data.nama);
+                                MyIO.Tulis("Kelas : " + data.kelas);
                                 //input data baru
-                                MyIO.TulisLn("");
+                                MyIO.Tulis("");
                                 SiswaModel dataBaru = new SiswaModel();
-                                Console.Write("Nis Baru   : ");
+                                MyIO.Label("Nis Baru   : ");
                                 dataBaru.nis = MyIO.InputString();
-                                Console.Write("Nama Baru  : ");
+                                MyIO.Label("Nama Baru  : ");
                                 dataBaru.nama = MyIO.InputString();
-                                Console.Write("Kelas Baru : ");
+                                MyIO.Label("Kelas Baru : ");
                                 dataBaru.kelas = MyIO.InputString();
-                                Console.Write("Update data siswa : [Y/N] ");
+                                MyIO.Label("Update data siswa : [Y/N] ");
                                 string jawab = MyIO.InputString();
                                 if (jawab.ToUpper() == "Y")
                                 {
@@ -349,14 +349,14 @@ namespace ConsoleApp
                         else if (pilihanSiswa == 4)
                         {
                             Console.Clear();
-                            MyIO.TulisLn(">> Hapus Data Siswa");
-                            MyIO.TulisLn("");
-                            Console.Write("Masukkan Nis yang ingin di Hapus : ");
+                            MyIO.Tulis(">> Hapus Data Siswa");
+                            MyIO.Tulis("");
+                            MyIO.Label("Masukkan Nis yang ingin di Hapus : ");
                             string nis = MyIO.InputString();
 
                             //tampilkan dulu data siswanya
                             
-                            Console.Write("Yakin mau dihapus ? [Y/N] ");
+                            MyIO.Label("Yakin mau dihapus ? [Y/N] ");
                             string jawab = MyIO.InputString();
                             if (jawab.ToUpper() == "Y")
                             {

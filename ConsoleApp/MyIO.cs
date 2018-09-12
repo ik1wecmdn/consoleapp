@@ -10,7 +10,7 @@ namespace ConsoleApp
     {
         
 
-        public static void TulisLn(int kiri, int atas, string teks, ConsoleColor warnaTeks = ConsoleColor.White, ConsoleColor warnaBg = ConsoleColor.Black)
+        public static void Tulis(int kiri, int atas, string teks, ConsoleColor warnaTeks = ConsoleColor.White, ConsoleColor warnaBg = ConsoleColor.Black)
         {
             Console.SetCursorPosition(kiri, atas);
             Console.ForegroundColor = warnaTeks;
@@ -18,14 +18,19 @@ namespace ConsoleApp
             Console.WriteLine(teks);
         }
 
-        public static void TulisLn(string teks, ConsoleColor warnaTeks = ConsoleColor.White, ConsoleColor warnaBg = ConsoleColor.Black)
+        public static void Tulis(string teks, ConsoleColor warnaTeks = ConsoleColor.White, ConsoleColor warnaBg = ConsoleColor.Black)
         {
             Console.ForegroundColor = warnaTeks;
             Console.BackgroundColor = warnaBg;
             Console.WriteLine(teks);
         }
 
-
+        public static void Label(string teks, ConsoleColor warnaTeks = ConsoleColor.White, ConsoleColor warnaBg = ConsoleColor.Black)
+        {
+            Console.ForegroundColor = warnaTeks;
+            Console.BackgroundColor = warnaBg;
+            Console.Write(teks);
+        }
 
         public static string InputString(ConsoleColor warnaTeksInput = ConsoleColor.Cyan, ConsoleColor warnaBgInput = ConsoleColor.Black)
         {
@@ -53,7 +58,7 @@ namespace ConsoleApp
             do
             {
                 //hapus teks jika sudah ada menggunakan string sepanjang teks
-                MyIO.TulisLn(left, top, new String(' ', input.Length)); 
+                MyIO.Tulis(left, top, new String(' ', input.Length)); 
                 Console.SetCursorPosition(left, top);
                 input = InputString(warnaTeksInput, warnaBgInput);
             }
